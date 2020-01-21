@@ -1,0 +1,14 @@
+{% extends 'maintain/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Classroom Maintanance board!</h1>
+    <p class="lead">For Instructors, view schedules.</p>
+    <hr class="my-4">
+    {% if user.is_authenticated %}
+    <a href="{% url 'courses' %}" class="btn btn-primary btn-lg" role="button">Courses</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Log in</a>
+    {% endif %}
+  </div>
+    {% endblock %}

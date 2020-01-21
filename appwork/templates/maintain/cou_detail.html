@@ -1,0 +1,15 @@
+
+{% extends 'maintain/base.html' %}
+
+{% block title %}
+    {{ cou.course_name }}
+    {% endblock %}
+
+    {% block breadcrumb %}
+        <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+        <li class="breadcrumb-item active">{{ cou.course_name }}</li>
+        {% endblock %}
+
+        {% block content %}
+            <!-- just leaving it empty for now. we will add core here soon. -->
+        {% endblock %}
