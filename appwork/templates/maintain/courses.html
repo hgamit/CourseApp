@@ -1,0 +1,36 @@
+{% extends 'maintain/base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Courses</li>
+{% endblock %}
+
+{% block content %}
+                <table class="table">
+                        <thead class="thead-inverse">
+                        <tr>
+                        <th>Course</th>
+                        <th>Course Type</th>
+                        <th>Required Software</th>
+                        <th>Notes</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for cou in courses %}
+                        {% if cou.course_instructor == user %}
+                        <tr>
+                            <td>
+                            <a href="{% url 'cou_detail' cou.id %}">{{ cou.course_name }}</a><br>
+                            <small class="text-muted d-block">{{ cou.course_description }}</small>
+                            </td>
+                            <td class="align-middle">{{ cou.course_type }}</td>
+                            <td class="align-middle">{{ cou.course_required_sware }}</td>
+                            <td class="align-middle">{{ cou.course_notes }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                    
+    </table> <br/>
+    <a class="btn btn-primary" href="{% url 'course_new'%}" role="button">Request Software Update</a>
+    {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'maintain/base.html' %}
+
+{% block title %}New Course{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+  <li class="breadcrumb-item active">New Course</li>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_course_name">Course Name:</label>
+    <input type="text" class="form-control" id="id_course_name" name="course_name">
+  </div>
+  <div class="form-group">
+    <label for="id_course_description">Course Description:</label>
+    <textarea class="form-control" id="id_course_description" name="course_description" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_type">Course Type:</label>
+    <input type="text" class="form-control" id="id_course_type" name="course_type">
+  </div>
+  <div class="form-group">
+    <label for="id_course_required_sware">Course Required Software:</label>
+    <textarea class="form-control" id="id_course_required_sware" name="course_required_sware" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_instructor_sware">Instructors Software:</label>
+    <textarea class="form-control" id="id_course_instructor_sware" name="course_instructor_sware" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_notes">Course Notes:</label>
+    <input type="text" class="form-control" id="id_course_notes" name="course_notes">
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>
+{% endblock %}

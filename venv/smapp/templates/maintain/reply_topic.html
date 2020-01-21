@@ -1,0 +1,49 @@
+{% extends 'maintain/base.html' %}
+
+{% load static %}
+
+{% block title %}Post a reply{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/simplemde.min.js' %}"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'course_topics' topic.topic_course.pk %}">{{ topic.topic_course.course_name }}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'topic_posts' topic.topic_course.pk topic.pk %}">{{ topic.topic_subject }}</a></li>
+  <li class="breadcrumb-item active">Post a reply</li>
+{% endblock %}
+
+{% block content %}
+
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post a reply</button>
+  </form>
+
+  {% for post in topic.topic_posts.all %}
+    <div class="card mb-2">
+      <div class="card-body p-3">
+        <div class="row mb-3">
+          <div class="col-6">
+            <strong class="text-muted">{{ post.post_created_by.username }}</strong>
+          </div>
+          <div class="col-6 text-right">
+            <small class="text-muted">{{ post.post_created_at }}</small>
+          </div>
+        </div>
+        {{ post.get_message_as_markdown }}
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'maintain/base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Start a New Topic{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+  <li class="breadcrumb-item active">{{ cou.course_name }}</li>
+  <li class="breadcrumb-item active">New Request</li>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% include 'maintain/includes/form.html' %}
+  <button type="submit" class="btn btn-success">Post Request</button>
+</form>
+
+<!--
+  
+    <div class="form-group">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      {% for cou in courses %}
+      <a class="dropdown-item" href="#">{{ cou.course_name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+  
+  <form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_course_name">Course Name:</label>
+    <input type="text" class="form-control" id="id_course_name" name="course_name">
+  </div>
+  <div class="form-group">
+    <label for="id_course_description">Course Description:</label>
+    <textarea class="form-control" id="id_course_description" name="course_description" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_type">Course Type:</label>
+    <input type="text" class="form-control" id="id_course_type" name="course_type">
+  </div>
+  <div class="form-group">
+    <label for="id_course_required_sware">Course Required Software:</label>
+    <textarea class="form-control" id="id_course_required_sware" name="course_required_sware" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_instructor_sware">Instructors Software:</label>
+    <textarea class="form-control" id="id_course_instructor_sware" name="course_instructor_sware" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="id_course_notes">Course Notes:</label>
+    <input type="text" class="form-control" id="id_course_notes" name="course_notes">
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>-->
+{% endblock %}
