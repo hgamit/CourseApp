@@ -10,5 +10,6 @@ urlpatterns = [
     path('<int:course_id>/topics/<int:topic_id>/reply/', views.reply_topic, name='reply_topic'),
     path('<int:course_id>/topics/<int:topic_id>/posts/<int:post_id>/edit/', views.update_post, name='edit_post'),
     path('<int:course_id>/course_update/', views.course_update, name='course_update'),
-    path('<int:course_id>/', views.cou_detail, name='cou_detail')
+    path('<int:course_id>/', views.cou_detail, name='cou_detail'),
+    path('<int:course_id>/classes/<int:class_id>/classroom', views.classroom_detail, name='classroom_detail')
 ]

@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block content %}
-                <table class="table">
+
+{% if courses %}
+
+<table class="table">
                         <thead class="thead-inverse">
                         <tr>
                         <th>Course</th>
@@ -19,6 +22,7 @@
                     </thead>
                     
                     <tbody>
+                 
                         {% for cou in courses %}
                              <tr>
                             <td>
@@ -26,7 +30,11 @@
                             <small class="text-muted d-block">{{ cou.course_description }}</small>
                             </td>
                             <td class="align-middle">{{ cou.course_type }}</td>
-                            <td class="align-middle">{{ cou.course_clsroom }}</td>
+                            <td class="align-middle">
+                              <a href="{% url 'classroom_detail' cou.id cou.course_clsroom.id %}">
+                                {{ cou.course_clsroom }}
+                              </a>
+                              </td>
                             <td class="align-middle">{{ cou.course_notes }}</td>
                             <td class="align-middle">
                                 {{ cou.get_posts_count }}
@@ -52,8 +60,20 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                    
-    </table> <br/>
+                 
+    </table> 
+    
+    {% else %}
+
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">No Courses!</h4>
+      <p>Aww yeah, you successfully read this important alert message. </p>
+      <hr>
+      <p class="mb-0">Sorry, no courses exist for your login. Please contact <a href="mailto:soetech@groups.stthomas.edu?Subject=Hello%20again" target="_top">soetech@groups.stthomas.edu</a>.</p>
+    </div>
+    {% endif %}
+    
+    <br/>
 
     {% if courses.has_other_pages %}
     <nav aria-label="Courses pagination" class="mb-4">
