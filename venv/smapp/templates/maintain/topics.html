@@ -10,6 +10,29 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+  <h2>{{ cou.course_name }} Course Details:</h2>
+  <p>{{ cou.course_description }}</p>
+  <div class="table-responsive-sm">           
+      <table class="table table-condensed table-bordered">
+      <thead>
+          <tr>
+          <th class="table-active">Property</th>
+          <th class="table-active">Value</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+          <td style="font-weight:bold">Course type:</td>
+          <td>{{ cou.course_type }}</td>
+          </tr>
+          <tr>
+          <td style="font-weight:bold">Course Notes:</td>
+          <td>{{ cou.course_notes }}</td>
+          </tr>
+      </tbody>
+      </table>
+</div> 
 
 <div class="mb-4">
     <a href="{% url 'course_update' cou.pk %}" class="btn btn-primary">New Request</a>
@@ -79,5 +102,6 @@
     </ul>
   </nav>
 {% endif %}
-
+</div>
+<br/>
 {% endblock %}

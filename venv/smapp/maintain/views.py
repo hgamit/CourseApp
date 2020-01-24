@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect
-from .forms import NewTopicForm, PostForm
-from .models import course, topic, post
 from django.db.models import Count
 from django.views.generic import UpdateView
 from django.utils import timezone
@@ -10,25 +8,31 @@ from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from constance import config
+from .forms import NewTopicForm, PostForm
+from .models import course, topic, post, classroom
 
 @login_required
 def courses(request):
     if request.user.is_authenticated:
-        queryset = get_list_or_404(course.objects.filter(course_schedule__sch_semester = config.Semester).filter(course_instructor__username=request.user))
+        queryset = list(course.objects.filter(course_schedule__sch_semester = config.Semester).filter(course_instructor__username=request.user))
         if request.user.is_superuser:
-            queryset = get_list_or_404(course.objects.filter(course_schedule__sch_semester = config.Semester).all())
-        page = request.GET.get('page', 1)
-        paginator = Paginator(queryset, 10)
-        try:
-            courses = paginator.page(page)
-        except PageNotAnInteger:
-            # fallback to the first page
-            courses = paginator.page(1)
-        except EmptyPage:
-            # probably the user tried to add a page number
-            # in the url, so we fallback to the last page
-            courses = paginator.page(paginator.num_pages)
-        return render(request, 'maintain/courses.html', {'courses': courses})
+            queryset = list(course.objects.filter(course_schedule__sch_semester = config.Semester).all())        
+        if queryset:
+            page = request.GET.get('page', 1)
+            paginator = Paginator(queryset, 10)
+            
+            try:
+                courses = paginator.page(page)
+            except PageNotAnInteger:
+                # fallback to the first page
+                courses = paginator.page(1)
+            except EmptyPage:
+                # probably the user tried to add a page number
+                # in the url, so we fallback to the last page
+                courses = paginator.page(paginator.num_pages)
+            return render(request, 'maintain/courses.html', {'courses': courses})
+        else:
+            return render(request, 'maintain/courses.html', {'courses': queryset})
     else:
         return render(request, 'maintain/home.html')
 
@@ -39,13 +43,18 @@ def cou_detail(request, course_id):
     cou = get_object_or_404(course, pk=course_id)
     return render(request, 'maintain/cou_detail.html', {'cou': cou})
 
+def classroom_detail(request, course_id, class_id):
+    clsroom = get_object_or_404(classroom, pk=class_id)
+    cou = get_object_or_404(course, pk=course_id)
+    return render(request, 'maintain/classroom_detail.html', {'clsroom': clsroom, 'cou': cou})
+
 
 @login_required
 def course_topics(request, course_id):
     cou = get_object_or_404(course, pk=course_id)
     queryset = cou.course_topics.order_by('-topic_last_updated').annotate(replies=Count('topic_posts')-1)
     page = request.GET.get('page', 1)
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, 5)
 
     try:
         topics = paginator.page(page)

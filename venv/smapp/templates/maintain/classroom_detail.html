@@ -1,0 +1,112 @@
+
+{% extends 'maintain/base.html' %}
+
+{% block title %}
+    {{ clsroom.class_name }}
+{% endblock %}
+
+{% block breadcrumb %}
+        <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'course_topics' cou.pk %}">{{ cou.course_name }}</a></li>
+        <li class="breadcrumb-item active">{{ clsroom.class_name }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ clsroom.class_name }} Classroom Details:</h2>
+    <p>{{ clsroom.class_description }}</p>
+    <div class="table-responsive-sm">           
+        <table class="table table-condensed table-bordered">
+        <thead>
+            <tr>
+            <th class="table-active">Property</th>
+            <th class="table-active">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td style="font-weight:bold">Class type:</td>
+            <td>{{ clsroom.class_type }}</td>
+            </tr>
+            <tr>
+            <td style="font-weight:bold">Class location:</td>
+            <td>{{ clsroom.class_location }}</td>
+            </tr>
+            <tr>
+            <td style="font-weight:bold">Class capacity:</td>
+            <td>{{ clsroom.class_capacity }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">Last updated:</td>
+                <td>{{ clsroom.class_last_updated }}</td>
+            </tr>
+        </tbody>
+        </table>
+</div> 
+
+
+<h2 id="softwares"><div> Available Softwares:<a class="anchorjs-link " href="#softwares" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></div></h2>
+<br/>
+    <div class="table-responsive-sm">
+        <table class="table table-condensed table-bordered">
+            <thead>
+                <tr>
+                <th class="table-active">Software</th>
+                <th class="table-active">Description</th>
+                <th class="table-active">Version</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td style="font-weight:bold">ANSYS - Electronics</td>
+                <td>{{ clsroom.class_type }}</td>
+                <td>{{ clsroom.class_type }}</td>
+                </tr>
+                <tr>
+                <td style="font-weight:bold">AutoCAD</td>
+                <td>{{ clsroom.class_location }}</td>
+                <td>{{ clsroom.class_type }}</td>
+                </tr>
+            </tbody>
+            </table>
+    </div> 
+
+<h2 id="Weekly"><div>Weekly Occupancy:<a class="anchorjs-link " href="#Weekly" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></div></h2>
+<br/>
+    <div class="table-responsive-sm">
+        <table class="table table-condensed table-bordered">
+            <thead>
+              <tr>
+                <th class="table-active">Time</th>
+                <th class="table-active">Mon</th>
+                <th class="table-active">Tue</th>
+                <th class="table-active">Wed</th>
+                <th class="table-active">Thu</th>
+                <th class="table-active">Fri</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>8 AM</td> 
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+              </tr>
+
+              <tr>
+                <td>9 AM</td>
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+                <td>Cell</td>
+              </tr>
+            </tbody>
+          </table>
+    </div> 
+  </div>
+
+  <br/>
+{% endblock %}
