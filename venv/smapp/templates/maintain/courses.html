@@ -14,7 +14,7 @@
                         <th>Course</th>
                         <th>Course Type</th>
                         <th>Classroom</th>
-                        <th>Notes</th>
+                        <th>Software Notes</th>
                         <th>Posts</th>
                         <th>Requests</th>
                         <th>Last Request</th>
@@ -27,12 +27,12 @@
                              <tr>
                             <td>
                             <a href="{% url 'course_topics' cou.id %}">{{ cou.course_name }}</a><br>
-                            <small class="text-muted d-block">{{ cou.course_description }}</small>
+                            <small class="text-muted d-block">{{ cou.course_code }}</small>
                             </td>
                             <td class="align-middle">{{ cou.course_type }}</td>
                             <td class="align-middle">
-                              <a href="{% url 'classroom_detail' cou.id cou.course_clsroom.id %}">
-                                {{ cou.course_clsroom }}
+                              <a href="{% url 'classroom_detail' cou.id cou.course_clsroom.get.id %}">
+                                {{ cou.course_clsroom.get.class_name }}
                               </a>
                               </td>
                             <td class="align-middle">{{ cou.course_notes }}</td>
@@ -75,45 +75,65 @@
     
     <br/>
 
-    {% if courses.has_other_pages %}
-    <nav aria-label="Courses pagination" class="mb-4">
-      <ul class="pagination">
-        {% if courses.has_previous %}
-          <li class="page-item">
-            <a class="page-link" href="?page={{ courses.previous_page_number }}">Previous</a>
-          </li>
-        {% else %}
-          <li class="page-item disabled">
-            <span class="page-link">Previous</span>
-          </li>
-        {% endif %}
-  
-        {% for page_num in courses.paginator.page_range %}
-          {% if courses.number == page_num %}
-            <li class="page-item active">
-              <span class="page-link">
-                {{ page_num }}
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-          {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-  
-        {% if courses.has_next %}
-          <li class="page-item">
-            <a class="page-link" href="?page={{ courses.next_page_number }}">Next</a>
-          </li>
-        {% else %}
-          <li class="page-item disabled">
-            <span class="page-link">Next</span>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
-  {% endif %}
+    {% if courses %}
+  <nav aria-label="Topics pagination" class="mb-4">
+    <ul class="pagination">
+      {% if courses.number > 1 %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">First</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">First</span>
+        </li>
+      {% endif %}
 
+      {% if courses.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ courses.previous_page_number }}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+      {% endif %}
+
+      {% for page_num in courses.paginator.page_range %}
+        {% if courses.number == page_num %}
+          <li class="page-item active">
+            <span class="page-link">
+              {{ page_num }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% elif page_num > courses.number|add:'-3' and page_num < courses.number|add:'3' %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if courses.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ courses.next_page_number }}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Next</span>
+        </li>
+      {% endif %}
+
+      {% if courses.number != courses.paginator.num_pages %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ courses.paginator.num_pages }}">Last</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Last</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+<br/>
 {% endblock %}

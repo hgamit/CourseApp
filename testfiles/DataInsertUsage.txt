@@ -1,0 +1,23 @@
+-- Steps to add data
+
+1. Prepare Data CSV File Same as Table Columns
+2. Run: python manage.py dbshell
+
+REF###https://www.sqlitetutorial.net/sqlite-import-csv/
+
+Change Mode: .mode csv
+
+3. Add Classrooms: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/classroom.csv maintain_classroom
+4. Add Hardware Information: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/clas_hware.csv maintain_clas_hware
+5. Add ManyToManyTable Information: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/M2M_hware_classroom_up.csv maintain_clas_hware_hware_classroom
+
+
+##TO DELETE ALL ROWS in Sqlite Querying: DELETE FROM table_name;
+
+6. Add courses: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/banner_historical_merged.csv maintain_course
+7. Add ManyToManyTable for Instructors:.import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/course_users.csv maintain_course_course_instructor
+8. Add ManyToManyTable for Classroom:.import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/course_classroom.csv maintain_course_course_clsroom
+
+
+
+9. Add softwares: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/softwares.csv maintain_clas_sware

@@ -12,7 +12,7 @@
 {% block content %}
 <div class="container">
   <h2>{{ cou.course_name }} Course Details:</h2>
-  <p>{{ cou.course_description }}</p>
+  <p>{{ cou.course_code }}</p>
   <div class="table-responsive-sm">           
       <table class="table table-condensed table-bordered">
       <thead>
@@ -23,19 +23,29 @@
       </thead>
       <tbody>
           <tr>
-          <td style="font-weight:bold">Course type:</td>
-          <td>{{ cou.course_type }}</td>
+          <td style="font-weight:bold">Course Level:</td>
+          <td>{{ cou.course_level }}</td>
           </tr>
           <tr>
-          <td style="font-weight:bold">Course Notes:</td>
+          <td style="font-weight:bold">Software Previously Installed:</td>
           <td>{{ cou.course_notes }}</td>
           </tr>
+          <tr>
+            <td style="font-weight:bold">Campus Site:</td>
+            <td>{{ cou.course_site }}</td>
+            </tr>
+
+            <tr>
+              <td style="font-weight:bold">Scheduled Days and Time:</td>
+              <td>Days: {{ cou.sch_days }} Time: {{ cou.sch_timeslot }}</td>
+              </tr>
       </tbody>
       </table>
 </div> 
 
 <div class="mb-4">
     <a href="{% url 'course_update' cou.pk %}" class="btn btn-primary">New Request</a>
+    <a href="{% url 'sware_results' %}" class="btn btn-primary">Check Available Softwares List</a>
   </div>
 
   <table class="table">

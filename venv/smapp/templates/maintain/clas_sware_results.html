@@ -1,0 +1,48 @@
+{% extends 'maintain/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+  <li class="breadcrumb-item active">Available Softwares</li>
+{% endblock %}
+
+{% block content %}
+
+{% if object_list %}
+
+<table class="table">
+                        <thead class="thead-inverse">
+                        <tr>
+                        <th>Software Name</th>
+                        <th>Version</th>
+                        <th>Software Description</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                 
+                        {% for sware in object_list %}
+                             <tr>
+                            <td>
+                            <a href="#">{{ sware.sware_name }}</a><br>
+                            </td>
+                            <td class="align-middle">{{ sware.sware_version }}</td>
+                            <td class="align-middle">{{ sware.sware_description }}</td>                             
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                 
+    </table> 
+    
+    {% else %}
+
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">No Softwares!</h4>
+      <p>Aww yeah, you successfully read this important alert message. </p>
+      <hr>
+      <p class="mb-0">Sorry, no softwares listed. Please contact <a href="mailto:soetech@groups.stthomas.edu?Subject=Hello%20again" target="_top">soetech@groups.stthomas.edu</a>.</p>
+    </div>
+    {% endif %}
+    {% include 'includes/pagination.html' %}
+
+    <br/>
+{% endblock %}
