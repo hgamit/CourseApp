@@ -2,3 +2,6 @@
 **/venv/Lib/**
 **/venv/Scripts/**
 **/venv/tcl/**
+*.sqlite3
+__pycache__
+*.csv
