@@ -7,25 +7,39 @@ from markdown import markdown
 
 class classroom(models.Model):
     class_name = models.CharField(max_length=30, unique=True)
-    class_description = models.CharField(max_length=100)
-    class_type = models.CharField(max_length=15)
+    #class_description = models.CharField(max_length=100)
+    #class_type = models.CharField(max_length=15)
     class_location = models.CharField(max_length=255)
     class_capacity = models.IntegerField(default=0)
+    class_computers = models.IntegerField(default=0)
+    class_instr_computer = models.BooleanField(default=False)
     class_last_updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.class_name
 
 class course(models.Model):
-    course_name = models.CharField(max_length=30, unique=True)
-    course_description = models.CharField(max_length=100)
-    course_type = models.CharField(max_length=15, default="Lecture")
+    course_name = models.CharField(max_length=30, default="Unknown")
+    course_code = models.CharField(max_length=10, default="Unknown")
+    course_section = models.CharField(max_length=10, default="Unknown")
+    course_site = models.CharField(max_length=10, default='Unknown')
+    course_meeting_location = models.CharField(max_length=10, default="Unknown")
+    course_description = models.CharField(max_length=300, default='No Description yet.')
+    course_type = models.CharField(max_length=15, default="Unknown")
+    course_level = models.CharField(max_length=15, default="Unknown")
     #course_required_instr_sware = models.CharField(max_length=200, default="MS Office")
     #course_required_sware = models.CharField(max_length=200, default="MS Office")
-    course_notes = models.CharField(max_length=200, default="MS Office")
+    course_notes = models.CharField(max_length=200, default="Unknown")
     course_last_updated = models.DateTimeField(auto_now_add=True)
     course_instructor = models.ManyToManyField(User, related_name='course_ins') ## Many to Many instructor --> course
-    course_clsroom = models.ForeignKey(classroom, related_name='classrm', on_delete=models.CASCADE) ## One to Many Class --> course
+    course_clsroom = models.ManyToManyField(classroom, related_name='classrm') ## Many to Many Class --> course
+    sch_days = models.CharField(max_length=8, default='Unknown')
+    sch_timeslot= models.CharField(max_length=10, default='Unknown')
+    sch_dateslot= models.CharField(max_length=70, default='Unknown')
+    sch_semester = models.CharField(max_length=40,default="Unknown")
+    sch_year = models.CharField(max_length=15, default="Unknown")
+    primary_instr_name = models.CharField(max_length=40,default="Unknown")
+    updatedby_name = models.CharField(max_length=40,default="Unknown")
 
     def __str__(self):
         return self.course_name
@@ -36,7 +50,7 @@ class course(models.Model):
     def get_last_post(self):
         return post.objects.filter(post_topic__topic_course=self).order_by('-post_created_at').first()
 
-class schedule(models.Model):
+'''class schedule(models.Model):
     MONDAY = "MON"
     TUESDAY = "TUE"
     WEDNESDAY = "WED"
@@ -53,24 +67,27 @@ class schedule(models.Model):
     (SATURDAY, 'Saturday'),
     (SUNDAY, 'Sunday'), )
 
-    sch_day = models.CharField(max_length=3, choices=DAYS_OF_WEEK, default=MONDAY)
-    sch_start = models.TimeField(default=datetime.time(00, 00))
-    sch_end = models.TimeField(default=datetime.time(00, 00))
+    sch_days = models.CharField(max_length=8, default='M')
+    sch_timeslot= models.CharField(max_length=10, default='1745-2100')
+    sch_dateslot= models.CharField(max_length=12, default='2/4-5/20')
+    #sch_start = models.TimeField(default=datetime.time(00, 00))
+    #sch_end = models.TimeField(default=datetime.time(00, 00))
     sch_semester = models.CharField(max_length=40,default="Spring 2020")
     sch_year = models.CharField(max_length=15, default="2019-20")
     #sch_created_at = models.DateTimeField(auto_now_add=True)
     #sch_updated_at = models.DateTimeField(null=True)
     #sch_created_by = models.ForeignKey(User, related_name='schedules', on_delete=models.CASCADE)
     #sch_updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.CASCADE)
-    sch_course = models.ForeignKey(course, related_name='course_schedule', on_delete=models.CASCADE) ## One to Many course --> schedules
+    sch_course = models.OneToOneField(course, related_name='course_schedule', on_delete=models.CASCADE) ## One to Many course --> schedules
     
     def __str__(self):
-        return self.sch_semester
+        return self.sch_semester'''
 
 class clas_sware(models.Model):
     sware_name = models.CharField(max_length=30, unique=True)
-    sware_description = models.CharField(max_length=100)
-    sware_notes = models.CharField(max_length=15)
+    sware_version = models.CharField(max_length=40, default= None)
+    sware_description = models.CharField(max_length=250,default='No Description yet.')
+    sware_notes = models.CharField(max_length=200, default='No Notes yet.')
     sware_last_updated = models.DateTimeField(auto_now_add=True)
     sware_classroom = models.ManyToManyField(classroom, related_name='sware') ## Many to Many  classroom --> sware  
 
@@ -80,8 +97,8 @@ class clas_sware(models.Model):
 
 class clas_hware(models.Model):
     hware_name = models.CharField(max_length=30, unique=True)
-    hware_description = models.CharField(max_length=100)
-    hware_notes = models.CharField(max_length=15)
+    hware_description = models.CharField(max_length=100, default='No Description yet.')
+    #hware_notes = models.CharField(max_length=15)
     hware_last_updated = models.DateTimeField(auto_now_add=True)
     hware_classroom = models.ManyToManyField(classroom, related_name='hware') ## Many to Many  classroom --> sware  
 

@@ -1,0 +1,49 @@
+{% load static %}
+
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js">    </script>
+<script type="text/javascript" src="{% static 'js/jquery.tokeninput.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'css/token-input.css" type="text/css" />
+<link rel="stylesheet" href="{% static 'css/token-input-facebook.css" type="text/css" />
+<link rel="stylesheet" href="{% static 'css/token-input-mac.css" type="text/css" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("input[type=button]").click(function () {
+        alert("Would submit: " + $(this).siblings("input[type=text]").val());
+    });
+});
+</script>
+</head>
+
+<body>
+<h1>jQuery Tokeninput Demos</h1>
+
+
+<h2>Simple Local Data Search</h2>
+<div>
+    <input type="text" id="demo-input-local" name="blah" />
+    <input type="button" value="Submit" />
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#demo-input-local").tokenInput([
+            {id: 7, name: "Ruby"},
+            {id: 11, name: "Python"},
+            {id: 13, name: "JavaScript"},
+            {id: 17, name: "ActionScript"},
+            {id: 19, name: "Scheme"},
+            {id: 23, name: "Lisp"},
+            {id: 29, name: "C#"},
+            {id: 31, name: "Fortran"},
+            {id: 37, name: "Visual Basic"},
+            {id: 41, name: "C"},
+            {id: 43, name: "C++"},
+            {id: 47, name: "Java"}
+        ]);
+    });
+    </script>
+</div>
+</body>
+</html>
