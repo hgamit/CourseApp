@@ -257,3 +257,6 @@ LOGGING = {
         },
     },
 }
+
+
+GRAPPELLI_ADMIN_TITLE = "Courses Administration"

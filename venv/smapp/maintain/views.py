@@ -21,7 +21,7 @@ def courses(request):
             queryset = list(course.objects.filter(sch_semester = config.Semester).all())        
         if queryset:
             page = request.GET.get('page', 1)
-            paginator = Paginator(queryset, 10)
+            paginator = Paginator(queryset, 5)
             
             try:
                 courses = paginator.page(page)
