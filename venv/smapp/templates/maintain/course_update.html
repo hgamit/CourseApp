@@ -3,7 +3,17 @@
 {% load widget_tweaks %}
 
 {% block title %}Start a New Topic{% endblock %}
+{% load static %}
 
+
+{% block stylesheet %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js">    </script>
+<script type="text/javascript" src="{% static 'js/jquery.tokeninput.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'css/token-input.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/token-input-facebook.css' %}" />
+<link rel="stylesheet" href="{% static 'css/token-input-mac.css' %}"/>
+{% endblock %}
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
   <li class="breadcrumb-item active">{{ cou.course_name }}</li>
@@ -17,7 +27,17 @@
   {% include 'maintain/includes/form.html' %}
   <button type="submit" class="btn btn-success">Post Request</button>
 </form>
-
+<script type="text/javascript">
+  var $y = jQuery.noConflict();
+  $(document).ready(function() {
+      $("#id_topic_software").tokenInput([
+        {{ tag_data| safe}}], 
+        {
+            tokenValue: 'name',
+            preventDuplicates: true,
+            });
+  });
+  </script>
 <!--
   
     <div class="form-group">
