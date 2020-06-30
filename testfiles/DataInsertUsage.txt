@@ -1,4 +1,7 @@
+#other way - https://django-import-export.readthedocs.io/en/latest/
+
 -- Steps to add data
+
 
 1. Prepare Data CSV File Same as Table Columns
 2. Run: python manage.py dbshell
