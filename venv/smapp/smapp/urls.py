@@ -20,6 +20,10 @@ from django.urls import include, path
 urlpatterns = [
     path('maintain/', include('maintain.urls')),
     path('accounts/', include('accounts.urls')),
+<<<<<<< HEAD
+=======
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     path('boards/', include('boards.urls')),

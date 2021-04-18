@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 -- Steps to add data
 
+=======
+#other way - https://django-import-export.readthedocs.io/en/latest/
+
+-- Steps to add data
+
+
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
 1. Prepare Data CSV File Same as Table Columns
 2. Run: python manage.py dbshell
 
@@ -20,4 +28,8 @@ Change Mode: .mode csv
 
 
 
+<<<<<<< HEAD
 9. Add softwares: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/softwares.csv maintain_clas_sware
+=======
+9. Add softwares: .import C:/Users/gami4388/Documents/repos/CourseApp/testfiles/softwares.csv maintain_clas_sware
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5

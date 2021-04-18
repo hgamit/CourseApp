@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 venv/
 SQLiteDatabaseBrowserPortable/
 __pycache__
 *.sqlite3
 *.csv
 settings.py
+=======
+**/venv/Include/**
+**/venv/Lib/**
+**/venv/Scripts/**
+**/venv/tcl/**
+*.sqlite3
+__pycache__
+*.csv
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5

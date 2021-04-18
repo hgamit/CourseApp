@@ -122,7 +122,12 @@ class clas_hware_deploy(models.Model): ## Many to Many
 
 
 class topic(models.Model):
+<<<<<<< HEAD
     topic_subject = models.CharField(max_length=255)
+=======
+    topic_subject = models.CharField(max_length=255, default="No Data provided.")
+    topic_software = models.CharField(max_length=255, default="No Data provided.")
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
     topic_last_updated = models.DateTimeField(auto_now_add=True)
     topic_course = models.ForeignKey(course, related_name='course_topics', on_delete=models.CASCADE)
     topic_starter = models.ForeignKey(User, related_name='user_topics', on_delete=models.CASCADE)

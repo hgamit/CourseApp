@@ -36,6 +36,11 @@
               </div>
             </div>
             {{ post.get_message_as_markdown }}
+<<<<<<< HEAD
+=======
+
+            <p> <strong>Topic Softwares:  </strong> {{ topic.topic_software }} </p>
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
             {% if post.post_created_by == user %}
               <div class="mt-3">
                 <a href="{% url 'edit_post' post.post_topic.topic_course.pk post.post_topic.pk post.pk %}"

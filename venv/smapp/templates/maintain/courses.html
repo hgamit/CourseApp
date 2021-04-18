@@ -7,17 +7,33 @@
 {% block content %}
 
 {% if courses %}
+<<<<<<< HEAD
+=======
+<div class="mb-4">
+  <a href="{% url 'sware_results' %}" class="btn btn-primary">Check Available Softwares List</a>
+</div>
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
 
 <table class="table">
                         <thead class="thead-inverse">
                         <tr>
                         <th>Course</th>
+<<<<<<< HEAD
                         <th>Course Type</th>
                         <th>Classroom</th>
                         <th>Software Notes</th>
                         <th>Posts</th>
                         <th>Requests</th>
                         <th>Last Request</th>
+=======
+                        
+                        <th>Classroom</th>
+                        <th>Install History</th>
+                        <th>Posts</th>
+                        <th>Requests</th>
+                        <th>Last Request</th>
+                        <th>Request Link</th>
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
                         </tr>
                     </thead>
                     
@@ -29,7 +45,10 @@
                             <a href="{% url 'course_topics' cou.id %}">{{ cou.course_name }}</a><br>
                             <small class="text-muted d-block">{{ cou.course_code }}</small>
                             </td>
+<<<<<<< HEAD
                             <td class="align-middle">{{ cou.course_type }}</td>
+=======
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
                             <td class="align-middle">
                               <a href="{% url 'classroom_detail' cou.id cou.course_clsroom.get.id %}">
                                 {{ cou.course_clsroom.get.class_name }}
@@ -57,6 +76,14 @@
                                 {% endif %}
                               {% endwith %}
                               </td>
+<<<<<<< HEAD
+=======
+                              <td class="align-middle">
+                                <div class="mb-4">
+                                <a href="{% url 'course_update' cou.pk %}" class="btn btn-primary">New Request</a>
+                              </div>
+                            </td>
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
                         </tr>
                         {% endfor %}
                     </tbody>

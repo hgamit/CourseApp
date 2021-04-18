@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 {
     "python.pythonPath": "c:\\Users\\hmnsh\\repos\\DjangoApp\\djangoenv\\Scripts\\python.exe"
+=======
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe"
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
 }

@@ -21,7 +21,11 @@ def courses(request):
             queryset = list(course.objects.filter(sch_semester = config.Semester).all())        
         if queryset:
             page = request.GET.get('page', 1)
+<<<<<<< HEAD
             paginator = Paginator(queryset, 10)
+=======
+            paginator = Paginator(queryset, 5)
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
             
             try:
                 courses = paginator.page(page)
@@ -39,11 +43,15 @@ def courses(request):
         return render(request, 'maintain/home.html')
 
 def home(request):
+<<<<<<< HEAD
     sware = get_list_or_404(clas_sware)
     tag_data = ""
     for ind, s_name in enumerate(sware):
         tag_data = tag_data + '{id: ' + str(ind) + ', name: "' + s_name.sware_name + '"},'
     return render(request, 'maintain/test.html', {'tag_data': tag_data})
+=======
+    return render(request, 'maintain/home.html')
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
 
 def cou_detail(request, course_id):
     cou = get_object_or_404(course, pk=course_id)
@@ -99,7 +107,11 @@ def course_update(request, course_id):
     sware = get_list_or_404(clas_sware)
     tag_data = ""
     for ind, s_name in enumerate(sware):
+<<<<<<< HEAD
         tag_data = tag_data + '{id: ' + str(ind) + ', name: "' + s_name.sware_name + '"},'
+=======
+        tag_data = tag_data + '{id: ' + str(ind) + ', name: "' + s_name.sware_name + " version " + s_name.sware_version + '"},'
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
     
     user = request.user  # get the currently logged in user
     if request.method == 'POST':
@@ -150,6 +162,14 @@ def reply_topic(request, course_id, topic_id):
 @login_required
 def update_post(request, course_id, topic_id, post_id):
     post_obj = get_object_or_404(post, post_topic__topic_course__pk=course_id, post_topic__pk=topic_id ,pk=post_id)
+<<<<<<< HEAD
+=======
+    sware = get_list_or_404(clas_sware)
+    tag_data = ""
+    for ind, s_name in enumerate(sware):
+        tag_data = tag_data + '{id: ' + str(ind) + ', name: "' + s_name.sware_name + " version " + s_name.sware_version + '"},'
+    
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
     if request.method == 'POST' and post_obj.post_created_by==request.user:
         form = PostForm(request.POST, instance=post_obj)
         if form.is_valid():
@@ -161,4 +181,8 @@ def update_post(request, course_id, topic_id, post_id):
             return redirect('topic_posts', course_id, topic_id)
     else:
         form = PostForm(instance=post_obj)
+<<<<<<< HEAD
     return render(request, 'maintain/edit_post.html', {'post': post_obj, 'form': form})
+=======
+    return render(request, 'maintain/edit_post.html', {'post': post_obj, 'form': form, 'tag_data': tag_data})
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5

@@ -2,7 +2,11 @@ from django.contrib import admin
 
 from .models import course, classroom, clas_sware, clas_hware
 
+<<<<<<< HEAD
 
+=======
+admin.site.site_url = "/maintain/"
+>>>>>>> 7f4a9991ac37a8284e1c69b428d63580d82388b5
 
 class HwareInline(admin.TabularInline):
     model = clas_hware.hware_classroom.through
