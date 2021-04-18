@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'constance',
     'constance.backends.database',
-    'django_python3_ldap',
+    #'django_python3_ldap',
 ]
 
 #from ...maintain.models import schedule
@@ -176,8 +176,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ## LDAP SETTINGS
-import ldap
-from django_auth_ldap.config import LDAPSearch
+#import ldap
+#from django_auth_ldap.config import LDAPSearch
 
 # The URL of the LDAP server.
 LDAP_AUTH_URL = "ldap://ust-wdns1.stthomas.edu:389"

@@ -1,4 +1,6 @@
-**/venv/Include/**
-**/venv/Lib/**
-**/venv/Scripts/**
-**/venv/tcl/**
+venv/
+SQLiteDatabaseBrowserPortable/
+__pycache__
+*.sqlite3
+*.csv
+settings.py
